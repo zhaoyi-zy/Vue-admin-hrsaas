@@ -50,7 +50,7 @@
       </el-button>
       <!--账号密码提示-->
       <div class="tips">
-        <span style="margin-right:20px;">mobile: 13800000002</span>
+        <span style="margin-right:20px;">username: 13800000002</span>
         <span> password: 123456</span>
       </div>
 
