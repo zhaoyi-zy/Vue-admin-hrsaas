@@ -42,7 +42,7 @@ module.exports = {
       '/api': {
         // target: 'http://ihrm-java.itheima.net/', // 跨域请求的地址
 
-        target:  'http://ihrm.itheima.net/', // 备用接口地址
+        target: 'http://ihrm.itheima.net/', // 备用接口地址
         changeOrigin: true // 只有这个值为true的情况下 才表示开启跨域
       }
     }
@@ -96,34 +96,34 @@ module.exports = {
             .plugin('ScriptExtHtmlWebpackPlugin')
             .after('html')
             .use('script-ext-html-webpack-plugin', [{
-            // `runtime` must same as runtimeChunk name. default is `runtime`
+              // `runtime` must same as runtimeChunk name. default is `runtime`
               inline: /runtime\..*\.js$/
             }])
             .end()
           config
             .optimization.splitChunks({
-              chunks: 'all',
-              cacheGroups: {
-                libs: {
-                  name: 'chunk-libs',
-                  test: /[\\/]node_modules[\\/]/,
-                  priority: 10,
-                  chunks: 'initial' //只打包最初依赖的第三方
-                },
-                elementUI: {
-                  name: 'chunk-elementUI', // 将elementUI拆分为单个包
-                  priority: 20, // 权重需要大于libs和app，否则它将被打包到libs或app中
-                  test: /[\\/]node_modules[\\/]_?element-ui(.*)/ // 为了适应cnpm
-                },
-                commons: {
-                  name: 'chunk-commons',
-                  test: resolve('src/components'), // 可以自定义规则
-                  minChunks: 3, //   最低限度共同氧化数
-                  priority: 5,
-                  reuseExistingChunk: true
-                }
+            chunks: 'all',
+            cacheGroups: {
+              libs: {
+                name: 'chunk-libs',
+                test: /[\\/]node_modules[\\/]/,
+                priority: 10,
+                chunks: 'initial' //只打包最初依赖的第三方
+              },
+              elementUI: {
+                name: 'chunk-elementUI', // 将elementUI拆分为单个包
+                priority: 20, // 权重需要大于libs和app，否则它将被打包到libs或app中
+                test: /[\\/]node_modules[\\/]_?element-ui(.*)/ // 为了适应cnpm
+              },
+              commons: {
+                name: 'chunk-commons',
+                test: resolve('src/components'), // 可以自定义规则
+                minChunks: 3, //   最低限度共同氧化数
+                priority: 5,
+                reuseExistingChunk: true
               }
-            })
+            }
+          })
 
           // https:// webpack.js.org/configuration/optimization/#optimizationruntimechunk
           config.optimization.runtimeChunk('single')
