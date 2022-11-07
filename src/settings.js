@@ -1,6 +1,6 @@
 module.exports = {
 
-  title: '人力资源管理平台',
+  title: 'HR Saas 中台系统',
 
   /**
    * @type {boolean} true | false
@@ -12,5 +12,5 @@ module.exports = {
    * @type {boolean} true | false
    * @description Whether show the logo in sidebar
    */
-  sidebarLogo: false
+  sidebarLogo: true
 }
