@@ -25,7 +25,7 @@ export default {
     },
     // 设置用户信息
     setUserInfo(state, userInfo) {
-      state.userInfo = { ...userInfo } // 用 浅拷贝的方式去赋值对象 因为这样数据更新之后，才会触发组件的更新
+      state.userInfo = {...userInfo} // 用 浅拷贝的方式去赋值对象 因为这样数据更新之后，才会触发组件的更新
     },
     // 删除用户信息
     removeUserInfo(state) {
@@ -42,11 +42,18 @@ export default {
     async getUserInfo(context) {
       const result = await getUserInfo() // result就是用户的基本资料
       const baseInfo = await getUserDetailById(result.userId) // 为了获取头像
-      const baseResult = { ...result, ...baseInfo } // 将两个接口结果合并
+      const baseResult = {...result, ...baseInfo} // 将两个接口结果合并
       // 此时已经获取到了用户的基本资料 迫不得已 为了头像再次调用一个接口
       context.commit('setUserInfo', baseResult) // 提交mutations
       // 加一个点睛之笔  这里这一步，暂时用不到，但是请注意，这给我们后边会留下伏笔
       return baseResult
+    },
+    // 退出登录
+    logout(context) {
+      //  删除token
+      context.commit('removeToken')
+      //  删除用户信息
+      context.commit('removeUserInfo')
     }
   }
 }

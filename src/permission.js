@@ -14,7 +14,7 @@ router.beforeEach(async (to, from, next) => {
 
   // 判断是否有token
   if (store.getters.token) {
-    // 如果有token
+    // 如果有token 免登陆
     if (to.path === '/login') {
       // 是否访问 登录页
       next('/')// 是 ? 跳到主页

@@ -29,10 +29,3 @@ export function getUserDetailById(id) {
     url: `/sys/user/${id}`
   })
 }
-
-/*
-* 退出登录
-* */
-export function logout() {
-
-}
