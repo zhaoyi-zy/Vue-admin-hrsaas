@@ -16,10 +16,19 @@ import '@/icons' // icon
 import '@/permission' // permission control
 
 // set ElementUI lang to EN
-Vue.use(ElementUI, { locale })
+Vue.use(ElementUI, {locale})
 // 如果想要中文版 element-ui，按如下方式声明
 // Vue.use(ElementUI)
 
+// 引入自定义指令
+import * as directives from '@/directives'
+// 注册自定义指令
+// 遍历所有的导出的指令对象 完成自定义全局注册
+Object.keys(directives).forEach(key => {
+  // 注册自定义指令
+  Vue.directive(key, directives[key])
+})
+// 关闭生产提示
 Vue.config.productionTip = false
 
 new Vue({
