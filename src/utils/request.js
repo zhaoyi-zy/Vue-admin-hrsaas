@@ -1,5 +1,8 @@
-import axios from 'axios'// 引入axios
-import {Message} from 'element-ui'
+import axios from 'axios'
+import { Message } from 'element-ui'
+import store from '@/store'
+import router from '@/router'
+import { getTimeStamp } from '@/utils/auth'
 
 const service = axios.create({
   // 如果执行 npm run dev  值为 /api正确 /api 这个代理只是给开发环境配置的代理

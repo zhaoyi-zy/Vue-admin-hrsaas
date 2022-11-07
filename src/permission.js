@@ -8,7 +8,7 @@ import 'nprogress/nprogress.css' // 引入进度条样式
 const whiteList = ['/login', '/404'] // 定义白名单 不受权限控制的页面
 
 // 前置守卫
-router.beforeEach((to, from, next) => {
+router.beforeEach(async (to, from, next) => {
   // 开启进度条
   nprogress.start()
 
@@ -19,6 +19,11 @@ router.beforeEach((to, from, next) => {
       // 是否访问 登录页
       next('/')// 是 ? 跳到主页
     } else {
+      if (!store.getters.userId) {
+        // 如果没有id这个值 才会调用 vuex的获取资料的action
+        await store.dispatch('user/getUserInfo')
+        // 为什么要写await 因为我们想获取完资料再去放行
+      }
       next() // 不是 ? 放行
     }
   } else {

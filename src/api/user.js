@@ -21,6 +21,14 @@ export function getUserInfo() {
     method: 'post'
   })
 }
+/*
+* 获取头像
+* */
+export function getUserDetailById(id) {
+  return request({
+    url: `/sys/user/${id}`
+  })
+}
 
 /*
 * 退出登录
