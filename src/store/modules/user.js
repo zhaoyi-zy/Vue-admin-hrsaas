@@ -1,5 +1,5 @@
 import {login, getUserInfo, getUserDetailById} from "@/api/user";
-import {getToken, setToken, removeToken} from "@/utils/auth";
+import {getToken, setToken, removeToken, setTimeStamp} from "@/utils/auth";
 
 export default {
   // 开启命名空间
@@ -37,6 +37,9 @@ export default {
     async login(context, data) {
       const result = await login(data)
       context.commit('setToken', result)
+
+      // 写入时间戳
+      setTimeStamp() // 将当前的最新时间写入缓存
     },
     // 获取用户资料action
     async getUserInfo(context) {
