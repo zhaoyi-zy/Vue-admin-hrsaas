@@ -47,7 +47,14 @@ service.interceptors.response.use(response => {
     return Promise.reject(message)
   }
 }, error => {
-  Message.error(error.message)// 提示错误信息
+  // error 信息里 response 对象
+  if (error.response && error.response.data && error.response.data.code === 1002) {
+    store.dispatch('user/logout') // 退出登录，包含清除token
+    router.push('/login')
+  } else {
+    Message.error(error.message)// 提示错误信息
+  }
+  return Promise.reject(error)
 })
 // 是否过期
 // 超时逻辑  (当前时间  - 缓存中的时间) 是否大于 时间差
