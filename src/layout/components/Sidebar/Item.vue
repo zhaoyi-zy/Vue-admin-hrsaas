@@ -1,6 +1,6 @@
 <script>
 export default {
-  name: 'MenuItem',
+  name: 'MenuItem', // 表示为函数式组件：无data，无响应式数据，没有this，只会接收props属性
   functional: true,
   props: {
     icon: {
