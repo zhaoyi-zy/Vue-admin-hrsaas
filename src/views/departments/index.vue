@@ -4,57 +4,13 @@
       <!-- 组织架构内容 - 头部 -->
       <el-card class="tree-card">
         <!-- 放置结构内容 -->
-        <el-row
-          type="flex"
-          justify="space-between"
-          align="middle"
-          style="height: 40px, width: 100%"
-        >
-          <el-col>
-            <!-- 左侧的内容 -->
-            <span>易优科技有限公司</span>
-          </el-col>
-        </el-row>
+        <treeTools :tree-node="company" :is-root="true" />
         <el-tree
           :data="departs"
           :props="defaultProps"
           :default-expand-all="true"
         >
-          <!-- 作用域插槽 slot-scope='obj' 接收传递给插槽的数据 data 每个节点的数据对象  -->
-          <el-row
-            slot-scope="{ data }"
-            type="flex"
-            justify="space-between"
-            align="middle"
-            style="height: 40px; width: 100%"
-          >
-            <el-col>
-              <span>{{ data.name }}</span>
-            </el-col>
-            <el-col :span="4">
-              <el-row type="flex" justify="end">
-                <el-col>{{ data.manager }}</el-col>
-                <el-col>
-                  <!-- 下拉菜单 -->
-                  <el-dropdown>
-                    <!-- 内容 -->
-                    <span>
-                      操作
-                      <i class="el-icon-arrow-down"></i>
-                    </span>
-                    <!-- 具名插槽 -->
-                    <el-dropdown-menu slot="dropdown">
-                      <!-- 下拉选项 -->
-                      <el-dropdown-item>添加子部门</el-dropdown-item>
-                      <el-dropdown-item>编辑子部门</el-dropdown-item>
-                      <el-dropdown-item>删除子部门</el-dropdown-item>
-                    </el-dropdown-menu>
-                  </el-dropdown>
-                </el-col>
-              </el-row>
-              <!-- 右侧内容 -->
-            </el-col>
-          </el-row>
+          <treeTools slot-scope="{ data }" :tree-node="data" />
         </el-tree>
       </el-card>
     </div>
@@ -62,10 +18,14 @@
 </template>
 
 <script>
+import treeTools from "@/views/departments/components/tree-tools";
+
 export default {
   name: "departments",
+  components: { treeTools },
   data() {
     return {
+      company: { name: "xxx科技有限公司", manager: "负责人" },
       departs: [
         {
           name: "总裁办",
