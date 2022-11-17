@@ -43,6 +43,7 @@ export default {
       required: true,
       type: Object,
     },
+    // 是否对根节点进行控制
     isRoot: {
       default: false,
       type: Boolean,
