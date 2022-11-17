@@ -41,7 +41,7 @@ export default {
       let result = await getDepartments();
       console.log(result);
       this.company = {name: result.companyName, manager: '负责人'}
-      this.departs = result.depts // 需要将其转化成树形结构
+      this.departs = transListToTreeData(result.depts, '') // 需要将其转化成树形结构
     },
   },
 };
