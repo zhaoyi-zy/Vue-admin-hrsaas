@@ -55,7 +55,10 @@ export default {
     // 点击 编辑 新增 删除 的操作
     async operateDepts(type) {
       if (type === 'add') { // 新增
-      } else if (type === 'edit') { // 班级
+        // 告诉父组件 显示弹层
+        this.$emit('addDepts', this.treeNode) // 为何传出treeNode 因为是添加子部门 需要当前部门的数据
+      } else if (type === 'edit') { // 编辑
+
       } else { // 删除
         this.$confirm('确定要删除该部门吗?').then(() => {
           // 如果点击了确定就会进入then
