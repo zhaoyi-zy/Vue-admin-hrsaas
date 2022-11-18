@@ -10,7 +10,7 @@
           :props="defaultProps"
           :default-expand-all="true"
         >
-          <treeTools slot-scope="{ data }" :tree-node="data"/>
+          <treeTools slot-scope="{ data }" :tree-node="data" @delDepts="getDepartments"/>
         </el-tree>
       </el-card>
     </div>
@@ -20,7 +20,7 @@
 <script>
 import treeTools from "@/views/departments/components/tree-tools";
 import {getDepartments} from "@/api/departments";
-
+import { tranListToTreeData } from '@/utils'
 export default {
   name: "departments",
   components: {treeTools},
@@ -39,9 +39,9 @@ export default {
   methods: {
     async getDepartments() {
       let result = await getDepartments();
-      console.log(result);
-      this.company = {name: result.companyName, manager: '负责人'}
-      this.departs = transListToTreeData(result.depts, '') // 需要将其转化成树形结构
+      // console.log(result);
+      this.company = {name: result.companyName, manager: '负责人', id: '' }
+      this.departs = tranListToTreeData(result.depts, '') // 需要将其转化成树形结构
     },
   },
 };

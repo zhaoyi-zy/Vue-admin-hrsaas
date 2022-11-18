@@ -35,6 +35,8 @@
 </template>
 
 <script>
+import {delDepartments} from '@/api/departments'
+
 export default {
   name: "treeTools",
   props: {
@@ -51,10 +53,18 @@ export default {
   },
   methods: {
     // 点击 编辑 新增 删除 的操作
-    operateDepts(type) {
+    async operateDepts(type) {
       if (type === 'add') { // 新增
       } else if (type === 'edit') { // 班级
       } else { // 删除
+        this.$confirm('确定要删除该部门吗?').then(() => {
+          // 如果点击了确定就会进入then
+          return delDepartments(this.treeNode.id) // 返回promise对象
+        }).then(() => {
+          //  如果删除成功了  就会进入这里
+          this.$emit('delDepts')
+          this.$message.success('删除成功!')
+        })
       }
     }
   }
