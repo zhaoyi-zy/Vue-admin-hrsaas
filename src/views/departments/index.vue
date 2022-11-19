@@ -15,7 +15,7 @@
       </el-card>
     </div>
     <!--防止新增弹出框组件-->
-    <addDept @cangedialog="method" :show-dialog.sync="showDialog" :tree-node="node" @addDepts="getDepartments"/>
+    <addDept ref="addDept" :show-dialog.sync="showDialog" :tree-node="node" @addDepts="getDepartments"/>
   </div>
 </template>
 
@@ -51,16 +51,12 @@ export default {
       this.departs = tranListToTreeData(result.depts, '') // 需要将其转化成树形结构
     },
     // treeTools中触发的点击添加是事件
-    addDepts() {
+    addDepts(node) {
       this.showDialog = true // 显示弹层
-      // 因为node是当前的点击的部门， 此时这个部门应该记录下来,
       this.node = node
-    },
-    method(value) {
-      this.showDialog = value
     }
-  },
-};
+  }
+}
 </script>
 
 <style scoped>

@@ -106,14 +106,14 @@ export default {
           await addDepts({...this.formData, pid: this.treeNode.id})
           // 通知父组件
           this.$emit('addDepts') // 触发自定义事件
-          // 修改showDialog值
-          this.$emit('update: showDialog', false)
+          this.$emit('update:showDialog', false) // 关闭
+          this.$message({type: 'success', message: '添加成功'}) // 提示
         }
       })
     },
     btnCancel() {
-      this.$refs.deptForm.resetFields() // 重置效验字段
-      this.$emit('update: showDialog', false) // 关闭
+      this.$refs.deptForm.resetFields() // 重置校验字段
+      this.$emit('update:showDialog', false) // 关闭
     }
   }
 }
