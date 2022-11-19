@@ -15,7 +15,7 @@
       </el-card>
     </div>
     <!--防止新增弹出框组件-->
-    <addDept :show-dialog="showDialog"/>
+    <addDept :show-dialog="showDialog" :tree-node="node"/>
   </div>
 </template>
 
