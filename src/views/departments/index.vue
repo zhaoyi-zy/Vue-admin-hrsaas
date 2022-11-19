@@ -15,7 +15,7 @@
       </el-card>
     </div>
     <!--防止新增弹出框组件-->
-    <addDept :show-dialog="showDialog" :tree-node="node"/>
+    <addDept @cangedialog="method" :show-dialog.sync="showDialog" :tree-node="node" @addDepts="getDepartments"/>
   </div>
 </template>
 
@@ -43,6 +43,7 @@ export default {
     this.getDepartments();
   },
   methods: {
+    // 获取新增数据
     async getDepartments() {
       let result = await getDepartments();
       // console.log(result);
@@ -54,6 +55,9 @@ export default {
       this.showDialog = true // 显示弹层
       // 因为node是当前的点击的部门， 此时这个部门应该记录下来,
       this.node = node
+    },
+    method(value) {
+      this.showDialog = value
     }
   },
 };
