@@ -1,6 +1,6 @@
 <template>
   <!--新增部门弹窗-->
-  <el-dialog title="新增部门" :visible="showDialog" @close="btnCancel">
+  <el-dialog :title="showTitle" :visible="showDialog" @close="btnCancel">
     <!--表单数据-->
     <el-form label-width="120px" :rules="rules" :model="formData" ref="deptForm">
       <el-form-item label="部门名称" prop="name">
@@ -92,6 +92,11 @@ export default {
       peoples: []
     }
   },
+  computed: {
+    showTitle() {
+      return this.formData.id ? '编辑部门' : '新增子部门'
+    }
+  },
   methods: {
     // 获取员工列表
     async getEmployeeSimple() {
@@ -116,6 +121,14 @@ export default {
       })
     },
     btnCancel() {
+      // 重置数据
+      this.formData = {
+        name: '',
+        code: '',
+        manager: '',
+        introduce: ''
+      }
+
       this.$refs.deptForm.resetFields() // 重置校验字段
       this.$emit('update:showDialog', false) // 关闭
     }
