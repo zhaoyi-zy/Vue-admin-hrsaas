@@ -37,7 +37,8 @@ export default {
         label: "name", // 表示从这个属性显示内容
       },
       showDialog: false, // 显示新增弹窗
-      node: null // 记录当前点击的node节点
+      node: null, // 记录当前点击的node节点
+      loading: false // 用来控制进度弹层的显示和隐藏
     };
   },
   created() {
@@ -46,10 +47,11 @@ export default {
   methods: {
     // 获取新增数据
     async getDepartments() {
+      this.loading = true
       let result = await getDepartments();
-      // console.log(result);
       this.company = {name: result.companyName, manager: '负责人', id: ''}
       this.departs = tranListToTreeData(result.depts, '') // 需要将其转化成树形结构
+      this.loading = false
     },
     // treeTools中触发的点击添加是事件
     addDepts(node) {
