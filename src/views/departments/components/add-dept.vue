@@ -29,7 +29,7 @@
 </template>
 
 <script>
-import {getDepartments, addDepts} from "@/api/departments";
+import {getDepartments, addDepts, getDepartDetail} from "@/api/departments";
 import {getEmployeeSimple} from "@/api/employees";
 
 export default {
@@ -96,6 +96,10 @@ export default {
     // 获取员工列表
     async getEmployeeSimple() {
       this.peoples = await getEmployeeSimple()
+    },
+    // 获取详情方法
+    async getDepartDetail(id) {
+      this.formData = await getDepartDetail(id)
     },
     //  点击确定触发
     btnOk() {

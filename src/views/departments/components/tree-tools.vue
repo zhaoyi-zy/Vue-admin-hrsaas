@@ -58,7 +58,7 @@ export default {
         // 告诉父组件 显示弹层
         this.$emit('addDepts', this.treeNode) // 为何传出treeNode 因为是添加子部门 需要当前部门的数据
       } else if (type === 'edit') { // 编辑
-
+        this.$emit('editDepts', this.treeNode)
       } else { // 删除
         this.$confirm('确定要删除该部门吗?').then(() => {
           // 如果点击了确定就会进入then
