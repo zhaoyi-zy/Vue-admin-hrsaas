@@ -22,12 +22,15 @@ Vue.use(ElementUI, {locale})
 
 // 引入自定义指令
 import * as directives from '@/directives'
+import Component from '@/components'
 // 注册自定义指令
 // 遍历所有的导出的指令对象 完成自定义全局注册
 Object.keys(directives).forEach(key => {
   // 注册自定义指令
   Vue.directive(key, directives[key])
 })
+Vue.use(Component)
+
 // 关闭生产提示
 Vue.config.productionTip = false
 

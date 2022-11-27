@@ -46,7 +46,7 @@ export default {
     }
   },
   data() {
-    // 检查部门名称是否重复
+    // 检查部门 名称 是否重复
     const checkNameRepeat = async (rule, value, cb) => {
       // value 部门名称 要去和同级部门比较 有没有相同的 有相同的 不能过 / 不相同就可以过
       const {depts} = await getDepartments()
@@ -62,7 +62,7 @@ export default {
       }
       isRepeat ? cb(new Error(`同级部门下已存在${value}部门`)) : cb()
     }
-    // 检查部门编码是否重复
+    // 检查部门 编码 是否重复
     const checkCodeRepeat = async (rule, value, cb) => {
       const {depts} = await getDepartments()
       let isRepeat = false
